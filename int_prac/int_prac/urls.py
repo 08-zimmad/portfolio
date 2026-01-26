@@ -19,5 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # oauth2.0 authentication
+    path('auth/', include('social_django.urls', namespace='social')),
     path('api/', include('my_portal.urls'))
 ]
