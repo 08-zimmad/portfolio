@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from .views import oauth_success
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # oauth2.0 authentication
     path('auth/', include('social_django.urls', namespace='social')),
+    path('auth/success/', oauth_success),
     path('api/', include('my_portal.urls'))
 ]
