@@ -6,25 +6,69 @@ on:
   pull_request:
     branches: [ "main" ]
 
-jobs:
-  build:
+# Grant permission to write changes back to the repository
+permissions:
+  contents: write
 
+jobs:
+  # JOB 1: Formatting and Linting (Ruff)
+  pep8-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Checkout with a token or ref might be needed depending on repo settings,
+          # but standard checkout usually works with the auto-commit action below.
+          ref: ${{ github.head_ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.12"
+
+      - name: Install Ruff
+        run: pip install ruff
+
+      - name: Sort Imports and Remove Unused
+        # --select I selects isort (import sorting)
+        # --fix applies changes automatically
+        run: ruff check --select I --fix .
+
+      - name: Format Code
+        # Formats code to PEP8 standards
+        run: ruff format .
+
+      - name: Commit and Push Changes
+        # This action commits the formatted code back to your branch
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "style: ruff auto-format and remove unused imports"
+          branch: ${{ github.head_ref }}
+
+  # JOB 2: Build and Test (Runs only after formatting is done)
+  build:
+    needs: pep8-fix  # Waits for formatting to finish
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.12, 3.13, 3.14]
+        # Note: Python 3.14 is currently experimental/future. 
+        # Ensure it is available in actions/setup-python before using.
+        python-version: [3.12, 3.13]
 
     steps:
     - uses: actions/checkout@v4
+    
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+        
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r int_prac/requirements.txt
+        
     - name: Run Tests
       run: |
-        python manage.py test
+        python int_prac/manage.py test
