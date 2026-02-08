@@ -6,56 +6,114 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('my_portal', '0001_initial'),
+        ("my_portal", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Portfolio',
+            name="Portfolio",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=30)),
-                ('last_name', models.CharField(max_length=30)),
-                ('full_name', models.CharField(max_length=40)),
-                ('email', models.EmailField(max_length=254)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=30)),
+                ("last_name", models.CharField(max_length=30)),
+                ("full_name", models.CharField(max_length=40)),
+                ("email", models.EmailField(max_length=254)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Experience',
+            name="Experience",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('company_name', models.CharField(max_length=30)),
-                ('years_of_experiece', models.IntegerField(default=0)),
-                ('description', models.TextField()),
-                ('join_date', models.DateField()),
-                ('is_current_working', models.BooleanField(default=False)),
-                ('end_date', models.DateField()),
-                ('portfolio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='experiences', to='my_portal.portfolio')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("company_name", models.CharField(max_length=30)),
+                ("years_of_experiece", models.IntegerField(default=0)),
+                ("description", models.TextField()),
+                ("join_date", models.DateField()),
+                ("is_current_working", models.BooleanField(default=False)),
+                ("end_date", models.DateField()),
+                (
+                    "portfolio",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="experiences",
+                        to="my_portal.portfolio",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Education',
+            name="Education",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('school_name', models.CharField(max_length=30)),
-                ('description', models.TextField(blank=True)),
-                ('join_date', models.DateField()),
-                ('end_date', models.DateField()),
-                ('portfolio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='educations', to='my_portal.portfolio')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("school_name", models.CharField(max_length=30)),
+                ("description", models.TextField(blank=True)),
+                ("join_date", models.DateField()),
+                ("end_date", models.DateField()),
+                (
+                    "portfolio",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="educations",
+                        to="my_portal.portfolio",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Certificates',
+            name="Certificates",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=30)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('certificate_link', models.URLField()),
-                ('course_duration', models.IntegerField()),
-                ('portfolio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='certificates', to='my_portal.portfolio')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=30)),
+                ("description", models.TextField(blank=True, null=True)),
+                ("certificate_link", models.URLField()),
+                ("course_duration", models.IntegerField()),
+                (
+                    "portfolio",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="certificates",
+                        to="my_portal.portfolio",
+                    ),
+                ),
             ],
         ),
     ]

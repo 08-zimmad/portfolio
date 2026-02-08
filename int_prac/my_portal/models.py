@@ -8,9 +8,8 @@ class CustomUser(AbstractUser):
     user_type = models.CharField(max_length=20, choices=USER_TYPES, default="visitor")
 
 
-
 class Portfolio(models.Model):
-    user = models.ForeignKey('CustomUser', on_delete=models.CASCADE)
+    user = models.ForeignKey("CustomUser", on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30, blank=False, null=False)
     last_name = models.CharField(max_length=30, blank=False, null=False)
     full_name = models.CharField(max_length=40, blank=False, null=False)
@@ -20,17 +19,13 @@ class Portfolio(models.Model):
     # def full_name(self):
     #     return self.first_name + ' ' + self.last_name
 
-
     def __str__(self):
         return str(self.full_name)
 
 
-
 class Experience(models.Model):
     portfolio = models.ForeignKey(
-        'Portfolio',
-        on_delete=models.CASCADE,
-        related_name="experiences"
+        "Portfolio", on_delete=models.CASCADE, related_name="experiences"
     )
     company_name = models.CharField(max_length=30, null=False, blank=False)
     years_of_experiece = models.IntegerField(default=0)
@@ -41,14 +36,11 @@ class Experience(models.Model):
 
     def __str__(self):
         return str(self.company_name)
-    
+
 
 class Education(models.Model):
-
     portfolio = models.ForeignKey(
-        'Portfolio',
-        on_delete=models.CASCADE,
-        related_name="educations"
+        "Portfolio", on_delete=models.CASCADE, related_name="educations"
     )
     school_name = models.CharField(max_length=30, null=False, blank=False)
     description = models.TextField(blank=True)
@@ -61,9 +53,7 @@ class Education(models.Model):
 
 class Certificates(models.Model):
     portfolio = models.ForeignKey(
-        'Portfolio',
-        on_delete=models.CASCADE,
-        related_name="certificates"
+        "Portfolio", on_delete=models.CASCADE, related_name="certificates"
     )
     name = models.CharField(max_length=30, null=False, blank=False)
     description = models.TextField(null=True, blank=True)
