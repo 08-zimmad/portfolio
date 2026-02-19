@@ -15,8 +15,6 @@ class Portfolio(models.Model):
     full_name = models.CharField(max_length=40, blank=False, null=False)
     email = models.EmailField(null=False, blank=False)
 
-
-
     def __str__(self):
         return str(self.full_name)
 

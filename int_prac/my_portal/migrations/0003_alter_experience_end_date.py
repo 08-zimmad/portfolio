@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('my_portal', '0002_portfolio_experience_education_certificates'),
+        ("my_portal", "0002_portfolio_experience_education_certificates"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='experience',
-            name='end_date',
+            model_name="experience",
+            name="end_date",
             field=models.DateField(blank=True, null=True),
         ),
     ]

@@ -1,12 +1,11 @@
 from django.contrib.auth import authenticate, login
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import viewsets
 
-from my_portal.serializers import RegistrationSerializer, EducationAPIViewSerializer
 from my_portal.models import Education
+from my_portal.serializers import EducationAPIViewSerializer, RegistrationSerializer
 
 
 class LoginApiView(APIView):
@@ -42,6 +41,7 @@ class RegisterApiView(APIView):
         return Response(
             {"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST
         )
+
 
 class EducationAPIView(viewsets.ModelViewSet):
     authentication_classes = []
