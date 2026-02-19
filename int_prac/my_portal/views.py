@@ -3,9 +3,11 @@ from rest_framework import status, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import UpdateModelMixin
 
-from my_portal.models import Education
-from my_portal.serializers import EducationAPIViewSerializer, RegistrationSerializer
+from my_portal.serializers import RegistrationSerializer, EducationAPIViewSerializer, PortfolioApiViewSerializer
+from my_portal.models import Education, Portfolio
 
 
 class LoginApiView(APIView):
@@ -44,7 +46,22 @@ class RegisterApiView(APIView):
 
 
 class EducationAPIView(viewsets.ModelViewSet):
-    authentication_classes = []
     permission_classes = [IsAuthenticated]
     serializer_class = EducationAPIViewSerializer
     queryset = Education.objects.all()
+
+
+
+class PortfolioAPIView(GenericAPIView, UpdateModelMixin):
+    permission_classes = [IsAuthenticated]
+    serializer_class = PortfolioApiViewSerializer
+    queryset = Portfolio.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, args, kwargs)
+
+    def get_queryset(self):
+        return super().get_queryset()

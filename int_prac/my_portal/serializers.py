@@ -24,8 +24,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class PortfolioApiViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Portfolio
-        fields = ["first_name", "last_name", "full_name", "email"]
-
+        fields = ['first_name', 'last_name', 'full_name', 'email', 'user']
 
 class EducationAPIViewSerializer(serializers.ModelSerializer):
     class Meta:
