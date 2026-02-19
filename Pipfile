@@ -25,6 +25,9 @@ sqlparse = "==0.5.5"
 tzdata = "==2025.3"
 urllib3 = "==2.6.3"
 python-dotenv = "*"
+django-redis = "*"
+rest-framework-simplejwt = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 

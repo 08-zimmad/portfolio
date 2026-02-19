@@ -33,7 +33,7 @@ class EducationAPIViewSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CertificatesAPIViewSerializer(serializers.ModelSerializer)
+class CertificatesAPIViewSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Certificates
