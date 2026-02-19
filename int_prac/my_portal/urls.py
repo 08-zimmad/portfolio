@@ -8,6 +8,6 @@ router.register(r"education", views.EducationAPIView, basename="education")
 
 urlpatterns = [
     path("login", views.LoginApiView.as_view(), name="login"),
-    path("register", views.RegisterApiView.as_view(), name="login"),
-    path("", include(router.urls)),
+    path("register", views.RegisterApiView.as_view(), name="register"),
+    path("api/", include(router.urls)),
 ]
