@@ -1,13 +1,17 @@
 from django.contrib.auth import authenticate, login
 from rest_framework import status, viewsets
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.generics import GenericAPIView
-from rest_framework.mixins import UpdateModelMixin
 
-from my_portal.serializers import RegistrationSerializer, EducationAPIViewSerializer, PortfolioApiViewSerializer
 from my_portal.models import Education, Portfolio
+from my_portal.serializers import (
+    EducationAPIViewSerializer,
+    PortfolioApiViewSerializer,
+    RegistrationSerializer,
+)
 
 
 class LoginApiView(APIView):
@@ -49,7 +53,6 @@ class EducationAPIView(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = EducationAPIViewSerializer
     queryset = Education.objects.all()
-
 
 
 class PortfolioAPIView(GenericAPIView, UpdateModelMixin):
