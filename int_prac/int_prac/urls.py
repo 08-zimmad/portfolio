@@ -25,5 +25,5 @@ urlpatterns = [
     # oauth2.0 authentication
     path("auth/", include("social_django.urls", namespace="social")),
     path("auth/success/", oauth_success),
-    path("api/", include("my_portal.urls")),
+    path("", include("my_portal.urls")),
 ]

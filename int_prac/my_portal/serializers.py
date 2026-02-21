@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
+from my_portal.models import Certificates, Experience, Portfolio
+
 User = get_user_model()
 
 
@@ -17,3 +19,21 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.set_password(validated_password)
         user.save()
         return user
+
+
+class PortfolioApiViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Portfolio
+        fields = ["first_name", "last_name", "full_name", "email", "user"]
+
+
+class EducationAPIViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Experience
+        fields = "__all__"
+
+
+class CertificatesAPIViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Certificates
+        fields = "__all__"
