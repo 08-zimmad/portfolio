@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # django Apps
     "my_portal",
+
     # 3rd party
     "rest_framework",
     "social_django",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
@@ -199,3 +201,17 @@ CACHES = {
 # session caches instead of db, in reddis
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+
+
+# Swagger Settings
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    },
+    'USE_SESSION_AUTH': False,
+}
