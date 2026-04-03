@@ -18,17 +18,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from .views import oauth_success
 from int_prac.swagger import schema_view
+
+from .views import oauth_success
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-
     # oauth2.0 authentication
     path("auth/", include("social_django.urls", namespace="social")),
     path("auth/success/", oauth_success),
     path("api/", include("my_portal.urls")),
-
     # swagger
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path(
+        "swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
 ]

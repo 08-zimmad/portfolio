@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from my_portal.models import Portfolio
 
 from my_portal.models import Certificates, Experience, Portfolio
 
@@ -22,7 +21,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return user
 
 
-
 class PortfolioApiViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Portfolio
@@ -39,8 +37,9 @@ class CertificatesAPIViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Certificates
         fields = "__all__"
+
+
 class PortfolioSerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = Portfolio
-        fields = '__all__'
+        fields = "__all__"

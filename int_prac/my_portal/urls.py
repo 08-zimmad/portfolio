@@ -2,9 +2,10 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 from my_portal import views
+
 router = DefaultRouter()
 router.register(r"education", views.EducationAPIView, basename="education")
-router.register("portfolio", views.PortfolioAPIView, basename='portfolio')
+router.register("portfolio", views.PortfolioAPIView, basename="portfolio")
 
 urlpatterns = [
     path("login", views.LoginApiView.as_view(), name="login"),
