@@ -5,13 +5,16 @@ from rest_framework.mixins import UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import viewsets
 
 from my_portal.models import Education, Portfolio
 from my_portal.serializers import (
     EducationAPIViewSerializer,
     PortfolioApiViewSerializer,
     RegistrationSerializer,
+    PortfolioSerializer
 )
+from my_portal.models import Portfolio
 
 
 class LoginApiView(APIView):
@@ -48,7 +51,6 @@ class RegisterApiView(APIView):
             {"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST
         )
 
-
 class EducationAPIView(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = EducationAPIViewSerializer
@@ -68,3 +70,8 @@ class PortfolioAPIView(GenericAPIView, UpdateModelMixin):
 
     def get_queryset(self):
         return super().get_queryset()
+
+class PortfolioAPIView(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
+    queryset = Portfolio.objects.all()
+    serializer_class = PortfolioSerializer
