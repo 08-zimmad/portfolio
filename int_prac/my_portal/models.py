@@ -12,11 +12,10 @@ class Portfolio(models.Model):
     user = models.ForeignKey("CustomUser", on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30, blank=False, null=False)
     last_name = models.CharField(max_length=30, blank=False, null=False)
-    full_name = models.CharField(max_length=40, blank=False, null=False)
     email = models.EmailField(null=False, blank=False)
 
     def __str__(self):
-        return str(self.full_name)
+        return str(self.first_name + " " + self.last_name)
 
 
 class Experience(models.Model):
@@ -39,6 +38,7 @@ class Education(models.Model):
         "Portfolio", on_delete=models.CASCADE, related_name="educations"
     )
     school_name = models.CharField(max_length=30, null=False, blank=False)
+    degree = models.CharField(blank=False)
     description = models.TextField(blank=True)
     join_date = models.DateField(null=False, blank=False)
     end_date = models.DateField(null=False, blank=False)
@@ -53,7 +53,7 @@ class Certificates(models.Model):
     )
     name = models.CharField(max_length=30, null=False, blank=False)
     description = models.TextField(null=True, blank=True)
-    certificate_link = models.URLField(blank=False, null=False)
+    certificate_link = models.URLField(blank=True, null=True)
     course_duration = models.IntegerField(null=False, blank=False)
 
     def __str__(self):
