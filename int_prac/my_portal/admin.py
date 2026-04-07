@@ -4,6 +4,10 @@ from my_portal import models
 
 # Register your models here.
 
+admin.site.register(models.Portfolio)
+admin.site.register(models.Education)
+admin.site.register(models.Experience)
+
 
 @admin.register(models.CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
