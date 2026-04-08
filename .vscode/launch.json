@@ -13,7 +13,8 @@
             ],
             "django": true,
             "autoStartBrowser": false,
-            "program": "${workspaceFolder}\\int_prac\\manage.py"
+            "program": "${workspaceFolder}\\int_prac\\manage.py",
+            "python": "${workspaceFolder}/int_prac/venv/Scripts/python.exe"
         }
     ]
 }
