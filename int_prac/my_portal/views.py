@@ -6,12 +6,13 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from my_portal.models import Education, Portfolio
+from my_portal.models import Education, Portfolio, Experience
 from my_portal.serializers import (
     EducationAPIViewSerializer,
     PortfolioApiViewSerializer,
     PortfolioSerializer,
     RegistrationSerializer,
+    ExperienceSerializer,
 )
 
 
@@ -51,13 +52,13 @@ class RegisterApiView(APIView):
 
 
 class EducationAPIView(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     serializer_class = EducationAPIViewSerializer
     queryset = Education.objects.all()
 
 
 class PortfolioAPIView(GenericAPIView, UpdateModelMixin):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     serializer_class = PortfolioApiViewSerializer
     queryset = Portfolio.objects.all()
 
@@ -75,3 +76,9 @@ class PortfolioAPIView(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     queryset = Portfolio.objects.all()
     serializer_class = PortfolioSerializer
+
+
+class ExperienceAPIVIew(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
+    queryset = Experience.objects.all()
+    serializer_class = ExperienceSerializer
