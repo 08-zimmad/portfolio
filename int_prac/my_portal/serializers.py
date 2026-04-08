@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from my_portal.models import Certificates, Education, Portfolio, Experience
+from my_portal.models import Certificates, Education, Experience, Portfolio
 
 User = get_user_model()
 
@@ -48,12 +48,11 @@ class PortfolioSerializer(serializers.ModelSerializer):
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
-        fields = '__all__'
+        fields = "__all__"
 
     def validate(self, attr):
         attr
-        if attr.get('is_currently_working') == True:
-            attr['end_date'] = None
-        
-        return attr
+        if attr.get("is_currently_working") == True:
+            attr["end_date"] = None
 
+        return attr

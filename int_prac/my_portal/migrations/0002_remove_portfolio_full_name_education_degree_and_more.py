@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('my_portal', '0001_initial'),
+        ("my_portal", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='portfolio',
-            name='full_name',
+            model_name="portfolio",
+            name="full_name",
         ),
         migrations.AddField(
-            model_name='education',
-            name='degree',
-            field=models.CharField(default=''),
+            model_name="education",
+            name="degree",
+            field=models.CharField(default=""),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='certificates',
-            name='certificate_link',
+            model_name="certificates",
+            name="certificate_link",
             field=models.URLField(blank=True, null=True),
         ),
     ]

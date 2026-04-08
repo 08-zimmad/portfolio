@@ -4,15 +4,14 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('my_portal', '0002_remove_portfolio_full_name_education_degree_and_more'),
+        ("my_portal", "0002_remove_portfolio_full_name_education_degree_and_more"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='experience',
-            old_name='is_current_working',
-            new_name='is_currently_working',
+            model_name="experience",
+            old_name="is_current_working",
+            new_name="is_currently_working",
         ),
     ]

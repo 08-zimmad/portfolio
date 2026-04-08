@@ -6,7 +6,7 @@ from my_portal import views
 router = DefaultRouter()
 router.register(r"education", views.EducationAPIView, basename="education")
 router.register("portfolio", views.PortfolioAPIView, basename="portfolio")
-router.register('experience', views.ExperienceAPIVIew, basename='experience')
+router.register("experience", views.ExperienceAPIVIew, basename="experience")
 
 urlpatterns = [
     path("login", views.LoginApiView.as_view(), name="login"),
