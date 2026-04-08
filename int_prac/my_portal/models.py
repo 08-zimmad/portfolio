@@ -26,7 +26,7 @@ class Experience(models.Model):
     years_of_experiece = models.IntegerField(default=0)
     description = models.TextField(null=False)
     join_date = models.DateField(null=False, blank=False)
-    is_current_working = models.BooleanField(default=False)
+    is_currently_working = models.BooleanField(default=False)
     end_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
