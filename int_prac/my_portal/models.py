@@ -1,7 +1,10 @@
 from wsgiref.validate import validator
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
 from my_portal.validator import validate_safe_url
+
 
 class CustomUser(AbstractUser):
     USER_TYPES = (("admin", "Admin"), ("me", "Me"), ("visitor", "Visitor"))
@@ -54,11 +57,10 @@ class Certificates(models.Model):
     )
     name = models.CharField(max_length=30, null=False, blank=False)
     description = models.TextField(null=True, blank=True)
-    certificate_link = models.URLField(blank=True, null=True, validators=[validate_safe_url])
+    certificate_link = models.URLField(
+        blank=True, null=True, validators=[validate_safe_url]
+    )
     course_duration = models.IntegerField(null=False, blank=False)
 
     def __str__(self):
         return str(self.name)
-
-
-

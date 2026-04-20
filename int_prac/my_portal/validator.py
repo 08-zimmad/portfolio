@@ -1,7 +1,9 @@
-from django.core.exceptions import ValidationError
 from urllib.parse import urlparse
 
+from django.core.exceptions import ValidationError
+
 ALLOWED_DOMAINS = ["coursera.com", "udemy.com"]
+
 
 def validate_safe_url(value):
     parsed = urlparse(value)

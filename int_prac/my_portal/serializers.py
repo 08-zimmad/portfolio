@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from my_portal.models import Certificates, Education, Portfolio, Experience, Certificates
+from my_portal.models import Certificates, Education, Experience, Portfolio
 
 User = get_user_model()
 
@@ -57,9 +57,8 @@ class ExperienceSerializer(serializers.ModelSerializer):
 
         return attr
 
-class CertificatesSerializer(serializers.ModelSerializer):
 
+class CertificatesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Certificates
-        fields = '__all__'
-
+        fields = "__all__"
