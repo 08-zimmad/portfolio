@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from my_portal.models import Certificates, Education, Experience, Portfolio
+from my_portal.models import Certificates, Education, Portfolio, Experience, Certificates
 
 User = get_user_model()
 
@@ -56,3 +56,10 @@ class ExperienceSerializer(serializers.ModelSerializer):
             attr["end_date"] = None
 
         return attr
+
+class CertificatesSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Certificates
+        fields = '__all__'
+

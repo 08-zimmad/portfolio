@@ -6,13 +6,16 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from my_portal.models import Education, Experience, Portfolio
+
+from my_portal.models import Education, Portfolio, Experience, Certificates
+
 from my_portal.serializers import (
     EducationAPIViewSerializer,
     ExperienceSerializer,
     PortfolioApiViewSerializer,
     PortfolioSerializer,
     RegistrationSerializer,
+    CertificatesSerializer
 )
 
 
@@ -82,3 +85,10 @@ class ExperienceAPIVIew(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     queryset = Experience.objects.all()
     serializer_class = ExperienceSerializer
+
+
+class CertificatesAPIView(viewsets.ModelViewSet):
+
+    permission_classes = [AllowAny]
+    queryset = Certificates.objects.all()
+    serializer_class = CertificatesSerializer
