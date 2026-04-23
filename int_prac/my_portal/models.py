@@ -60,7 +60,7 @@ class Certificates(models.Model):
     certificate_link = models.URLField(
         blank=True, null=True, validators=[validate_safe_url]
     )
-    course_duration = models.IntegerField(null=False, blank=False)
+    course_duration = models.PositiveIntegerField(null=False, blank=False)
 
     def __str__(self):
         return str(self.name)
